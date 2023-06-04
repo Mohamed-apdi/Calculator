@@ -1,0 +1,166 @@
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,300&display=swap');
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        button{
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+            border: none;
+            background-color: #505050;
+            padding: 5px 5px;
+            margin: 5px 5px;
+            color: white;
+            font-weight: 600;
+            font-size: 25px;
+
+            /* #d4d4d2 #1c1c1c #505050 */
+        }
+        .symbol{
+            background-color: #ff9500;
+        }
+        .clear{
+            width: 325px;
+            border-radius: 4px;
+            background-color: #d4d4d4;
+            color: black;
+            font-size: 35px;
+            transition: all 0.2 ease-out;
+        }
+        .clear:hover{
+          background-color: #505050;
+        }
+        .display {
+            width: 325px;
+            background-color: #1d1d1d;
+            height: 60px;
+            font-size: 30px;
+            font-weight: 600;
+            color: #fff;
+
+        }
+        .container{
+            background-color: #1d1d1d;
+            display: inline-block;
+            padding: 20px 20px;
+            border-radius: 5px;
+            align-items: center;
+            margin: 40px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    <p class="display"></p>
+    <p>
+      <button onclick="
+      updateCalculation('1');
+      ">1</button>
+      
+      <button onclick="
+      updateCalculation('2');
+      ">2</button>
+
+      <button onclick="
+      updateCalculation('3');
+      ">3</button>
+
+      <button class="symbol" onclick="
+      updateCalculation('+');
+      ">+</button>
+    </p>
+
+    <p>
+      <button onclick="
+      updateCalculation('4');
+      ">4</button>
+      
+      <button onclick="
+      updateCalculation('5');
+      ">5</button>
+
+      <button onclick="
+      updateCalculation('6');
+      ">6</button>
+
+      <button class="symbol" onclick="
+      updateCalculation('-');
+      ">-</button>
+    </p>
+
+    <p>
+      <button onclick="
+      updateCalculation('7');
+      ">7</button>
+      
+      <button onclick="
+      updateCalculation('8');
+      ">8</button>
+
+      <button onclick="
+      updateCalculation('9');
+      ">9</button>
+
+      <button class="symbol" onclick="
+      updateCalculation('*');
+      ">*</button>
+    </p>
+
+    <p>
+      <button onclick="
+      updateCalculation('0');
+      ">0</button>
+      
+      <button onclick="
+      updateCalculation('.');
+      ">.</button>
+
+      <button class="symbol" onclick="
+        calculation = eval(calculation);
+        
+        displayCalculation();
+        // Remember to save the calculation here.
+        localStorage.setItem('calculation' , calculation)
+      ">=</button>
+
+      <button class="symbol" onclick="
+      updateCalculation('/');
+      ">/</button>
+    </p>
+
+    <p>
+      <button class="clear" onclick="
+        calculation = '';
+        
+        displayCalculation();
+        // Remember to save the calculation here.
+        localStorage.setItem('calculation' , calculation)
+      ">Clear</button>
+    </p>
+</div>
+    <script>
+      let calculation = localStorage.getItem('calculation') || '';
+
+      function updateCalculation(value) {
+        calculation += value;
+        displayCalculation();
+        localStorage.setItem('calculation' , calculation)
+      }
+      
+      function save(){
+        localStorage.setItem('calculation',calculation);
+      }
+
+      function displayCalculation(){
+        document.querySelector('.display').innerHTML = `${calculation}`;
+      }
+    </script>
+  </body>
+</html>
